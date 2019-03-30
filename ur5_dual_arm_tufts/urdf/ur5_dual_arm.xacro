@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
+  <!-- robotiq 85 -->
+  <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  <!-- arm 1 -->
+  <xacro:ur5_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+  />
+
+  <!-- arm 2 -->
+  <xacro:ur5_robot prefix="2_" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+  />
+
+  <link name="world"/>
+
+  <link name="ur5_frame">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+ <joint name="ur5_frame_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="ur5_frame"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="world_joint_1" type="fixed">
+    <parent link="ur5_frame" />
+    <child link = "base_link" />
+    <origin xyz="0.607 0.635 1.27" rpy="${0*pi/180} ${135*pi/180}  ${0*pi/180}" />
+  </joint>
+
+  <joint name="world_joint_2" type="fixed">
+    <parent link="ur5_frame" />
+    <child link = "2_base_link" />
+    <origin xyz="0.28 0.69 1.27" rpy="${0*pi/180} ${225*pi/180}  ${0*pi/180}" />
+  </joint>
+
+  <!-- robotiq 85 1 -->
+  <xacro:robotiq_85_gripper prefix="" parent="ee_link" >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_85_gripper>
+
+  <!-- robotiq 85 2 -->
+  <xacro:robotiq_85_gripper prefix="2_" parent="2_ee_link" >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_85_gripper>
+
+
+</robot>
+
+
+
