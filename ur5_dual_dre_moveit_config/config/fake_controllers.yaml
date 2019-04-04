@@ -1,0 +1,23 @@
+controller_list:
+  - name: fake_Right_ur5_arm_controller
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+  - name: fake_Left_ur5_arm_controller
+    joints:
+      - 2_shoulder_pan_joint
+      - 2_shoulder_lift_joint
+      - 2_elbow_joint
+      - 2_wrist_1_joint
+      - 2_wrist_2_joint
+      - 2_wrist_3_joint
+  - name: fake_Right_85_gripper_controller
+    joints:
+      - gripper_finger1_joint
+  - name: fake_Left_85_gripper_controller
+    joints:
+      - 2_gripper_finger1_joint
