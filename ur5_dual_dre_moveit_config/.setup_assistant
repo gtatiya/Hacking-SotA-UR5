@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ur5_dual_arm_tufts
+    relative_path: urdf/ur5_dual_arm.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/ur5.srdf
+  CONFIG:
+    author_name: Andre Cleaver
+    author_email: andre.cleaver@tufts.edu
+    generated_timestamp: 1554402928
