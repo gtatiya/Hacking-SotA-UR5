@@ -28,9 +28,6 @@
     <arg name="sim" default="$(arg sim)" />
   </include>
 
-  <include file="$(find ur5_single_arm_moveit_config)/launch/moveit_rviz.launch">
-    <arg name="debug" default="$(arg debug)" />
-    <arg name="config" default="true" />
-  </include>
+  <node pkg="ur5_single_arm_manipulation" name="execute_trajectory" type="execute_trajectory.py" output="screen" />
 
 </launch>
