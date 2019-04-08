@@ -1,0 +1,26 @@
+<robot name="block">
+  <link name="block">
+    <inertial>
+      <origin xyz="0.025 0.025 0.025" />
+      <mass value="5" />
+      <inertia  ixx="0.0016875" ixy="0.0"  ixz="0.0"  iyy="0.00168757"  iyz="0.0"  izz="0.0016875" />
+    </inertial>
+    <visual>
+      <origin xyz="0.025 0.025 0.025"/>
+      <geometry>
+        <box size="0.045 0.045 0.045" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.025 0.025 0.025"/>
+      <geometry>
+        <box size="0.045 0.045 0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="block">
+    <material>Gazebo/RedBright</material>
+     <mu1>1500</mu1>
+     <mu2>1500</mu2>
+  </gazebo>
+</robot>

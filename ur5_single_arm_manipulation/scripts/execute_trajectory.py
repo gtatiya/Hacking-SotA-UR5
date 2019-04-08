@@ -50,6 +50,7 @@ grp_group.go(wait=True)
 print("Point 3")
 
 pose = arm_group.get_current_pose().pose
+print("Got pose")
 pose.position.x += 0.1
 pose.position.y += 0.1
 pose.position.z += 0.1
