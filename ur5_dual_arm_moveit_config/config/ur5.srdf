@@ -54,6 +54,38 @@
         <joint name="wrist_2_joint" value="0" />
         <joint name="wrist_3_joint" value="-1.29" />
     </group_state>
+    <group_state name="right_open" group="right_gripper">
+        <joint name="gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="gripper_finger1_joint" value="0" />
+        <joint name="gripper_finger2_finger_tip_joint" value="0" />
+        <joint name="gripper_finger2_inner_knuckle_joint" value="0" />
+        <joint name="gripper_finger2_joint" value="0" />
+    </group_state>
+    <group_state name="left_close" group="left_gripper">
+        <joint name="2_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="2_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="2_gripper_finger1_joint" value="0.803" />
+        <joint name="2_gripper_finger2_finger_tip_joint" value="0" />
+        <joint name="2_gripper_finger2_inner_knuckle_joint" value="0" />
+        <joint name="2_gripper_finger2_joint" value="0" />
+    </group_state>
+    <group_state name="left_open" group="left_gripper">
+        <joint name="2_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="2_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="2_gripper_finger1_joint" value="0" />
+        <joint name="2_gripper_finger2_finger_tip_joint" value="0" />
+        <joint name="2_gripper_finger2_inner_knuckle_joint" value="0" />
+        <joint name="2_gripper_finger2_joint" value="0" />
+    </group_state>
+    <group_state name="right_close" group="right_gripper">
+        <joint name="gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="gripper_finger1_joint" value="0.803" />
+        <joint name="gripper_finger2_finger_tip_joint" value="0" />
+        <joint name="gripper_finger2_inner_knuckle_joint" value="0" />
+        <joint name="gripper_finger2_joint" value="0" />
+    </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
