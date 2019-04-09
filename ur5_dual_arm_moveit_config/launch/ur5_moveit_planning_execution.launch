@@ -1,0 +1,18 @@
+<launch>
+  <arg name="sim" default="false" />
+  <arg name="limited" default="false"/>
+  <arg name="debug" default="false" />
+    
+  <!-- Remap follow_joint_trajectory -->
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/ur5_arm_right/follow_joint_trajectory"/>
+
+    <!-- Remap follow_joint_trajectory -->
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/ur5_arm_left/follow_joint_trajectory"/>
+  
+  
+  <!-- Launch moveit -->
+  <include file="$(find ur5_dual_arm_moveit_config)/launch/move_group.launch">
+    <arg name="limited" default="$(arg limited)"/>
+    <arg name="debug" default="$(arg debug)" />
+  </include>
+</launch>

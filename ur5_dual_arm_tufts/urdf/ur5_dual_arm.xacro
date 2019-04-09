@@ -48,12 +48,14 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
+<!-- right arm -->
   <joint name="world_joint_1" type="fixed">
     <parent link="ur5_frame" />
     <child link = "base_link" />
     <origin xyz="0.645 0.635 1.275" rpy="${0*pi/180} ${135*pi/180}  ${0*pi/180}" />
   </joint>
 
+<!-- left arm -->
   <joint name="world_joint_2" type="fixed">
     <parent link="ur5_frame" />
     <child link = "2_base_link" />
