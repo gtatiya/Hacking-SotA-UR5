@@ -29,6 +29,14 @@
         <box size="1 1 0.05"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0.23 0 0.755" rpy="0 0 0" />
+      <mass value="1"/>
+      <inertia
+        ixx="0.07" ixy="0.0" ixz="0.0"
+        iyy="0.40" iyz="0.0"
+        izz="0.33"/>
+    </inertial>
     <collision>
       <geometry>
         <box size="1 1 0.05"/>

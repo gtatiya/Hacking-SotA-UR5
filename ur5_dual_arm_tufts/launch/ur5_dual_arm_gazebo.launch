@@ -33,6 +33,4 @@
     <arg name="config" default="true" />
   </include>
 
-
-
 </launch>
