@@ -30,4 +30,4 @@ controller_list:
     type: FollowJointTrajectory
     default: true
     joints:
-      - gripper_finger1_joint
+      - 2_gripper_finger1_joint

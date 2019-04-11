@@ -34,14 +34,14 @@
   <link name="world"/>
 
   <link name="ur5_frame">
-<!--     <inertial>
+    <inertial>
       <origin rpy  ="0.0 0 0" xyz="0 0 0"/>
       <mass value="27.2155"/>
       <inertia
         ixx="5.01" ixy="0.0" ixz="0.0"
         iyy="5.07" iyz="0.0"
         izz="3.20"/>
-    </inertial> -->
+    </inertial>
 <!--     <collision>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
