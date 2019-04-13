@@ -29,7 +29,7 @@
         <box size="1 1 0.05"/>
       </geometry>
     </visual>
-    <inertial>
+     <inertial>
       <origin xyz="0.23 0 0.755" rpy="0 0 0" />
       <mass value="1"/>
       <inertia
