@@ -34,6 +34,7 @@
      -J right_wrist_3_joint -1.84 
      -unpause" /> 
 
+<!--   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/> -->
 
   <include file="$(find ur_gazebo)/launch/controller_utils.launch"/>
   <rosparam file="$(find ur5_dual_arm_tufts)/controller/arm_controller.yaml" command="load"/>

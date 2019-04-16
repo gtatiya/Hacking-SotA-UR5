@@ -35,8 +35,8 @@
 
   <link name="ur5_frame">
     <inertial>
-      <origin rpy  ="0.0 0 0" xyz="0 0 0"/>
-      <mass value="27.2155"/>
+      <origin rpy  ="0.0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="27.21"/>
       <inertia
         ixx="5.01" ixy="0.0" ixz="0.0"
         iyy="5.07" iyz="0.0"
@@ -51,7 +51,8 @@
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.dae"/>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.STL"/>
+        <!-- <mesh filename="/home/andrecleaver/catkin_ws/src/Hacking-SotA-UR5/ur5_dual_arm_tufts/meshes/UR5Frame.dae"/> -->
       </geometry>
     </visual>
   </link>
