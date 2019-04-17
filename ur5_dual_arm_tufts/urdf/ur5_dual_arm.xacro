@@ -42,12 +42,12 @@
         iyy="5.07" iyz="0.0"
         izz="3.20"/>
     </inertial>
-<!--     <collision>
+    <collision>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.dae"/>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.stl"/>
       </geometry>
-    </collision> -->
+    </collision>
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
