@@ -13,7 +13,7 @@
 `roslaunch ur5_single_arm_manipulation execute_trajectory.launch`
 
 ### Execute trajectories (open Gazebo first):
-`rosrun ur5_single_arm_ur5_manipulation execute_trajectory.py`
+`rosrun ur5_single_arm_manipulation execute_trajectory.py`
 
 ## UR5 Single Arm
 
