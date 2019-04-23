@@ -24,7 +24,7 @@
 `roslaunch ur5_single_arm_manipulation grasp_generator_server.launch`
 
 ### Spawn Table and Block:
-`rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_manipulation)/models/2/table.urdf -urdf -x 0.8 -y 0.0 -z 0.55 -model my_object`
+`rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_manipulation)/models/2/table.urdf -urdf -x 0.8 -y 0.0 -z 0.55 -model my_object` <br>
 `rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_manipulation)/models/2/model.urdf -urdf -x 0.7 -y -0.1 -z 0.6 -model block`
 
 ### Pick and Place:
