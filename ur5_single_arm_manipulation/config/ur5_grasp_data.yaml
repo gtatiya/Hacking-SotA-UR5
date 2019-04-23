@@ -7,9 +7,9 @@ gripper:
   joints: ['gripper_finger1_joint', 'gripper_finger2_joint']
 
   #Posture of grippers before grasping
-  pregrasp_posture: [0.048, 0.048]
+  pregrasp_posture: [0.0] #open
   pregrasp_time_from_start: 4.0
-  grasp_posture: [0.016, 0.016]
+  grasp_posture: [0.322] #close, max value is 0.8040
   grasp_time_from_start: 4.0
   postplace_time_from_start: 4.0
 

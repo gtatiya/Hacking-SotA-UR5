@@ -40,6 +40,14 @@
         <joint name="wrist_2_joint" value="0" />
         <joint name="wrist_3_joint" value="0" />
     </group_state>
+    <group_state name="pickup" group="manipulator">
+        <joint name="elbow_joint" value="1.5" />
+        <joint name="shoulder_lift_joint" value="-1.5" />
+        <joint name="shoulder_pan_joint" value="0" />
+        <joint name="wrist_1_joint" value="-1.5" />
+        <joint name="wrist_2_joint" value="-1.5" />
+        <joint name="wrist_3_joint" value="-3" />
+    </group_state>
     <group_state name="open" group="gripper">
         <joint name="gripper_finger1_finger_tip_joint" value="0" />
         <joint name="gripper_finger1_inner_knuckle_joint" value="0" />

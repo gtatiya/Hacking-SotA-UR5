@@ -78,6 +78,10 @@ class Pick_Place:
         self._arm     = self._robot.get_group(self._arm_group)
         self._gripper = self._robot.get_group(self._gripper_group)
 
+        self._arm.set_named_target('pickup')
+        self._arm.go(wait=True)
+        print("Pickup pose")
+
         # Create grasp generator 'generate' action client:
         self._grasps_ac = SimpleActionClient('/moveit_simple_grasps_server/generate', GenerateGraspsAction)
         if not self._grasps_ac.wait_for_server(rospy.Duration(5.0)):
@@ -119,9 +123,9 @@ class Pick_Place:
         self._scene.remove_world_object(self._table_object_name)
 
     def _add_table(self, name):
-    	"""
-    	Create and add table to the scene
-    	"""
+        """
+        Create and add table to the scene
+        """
         p = PoseStamped()
         p.header.frame_id = self._robot.get_planning_frame()
         p.header.stamp = rospy.Time.now()
@@ -140,9 +144,9 @@ class Pick_Place:
         return p.pose
 
     def _add_grasp_block_(self, name):
-    	"""
-    	Create and add block to the scene
-    	"""
+        """
+        Create and add block to the scene
+        """
         p = PoseStamped()
         p.header.frame_id = self._robot.get_planning_frame()
         p.header.stamp = rospy.Time.now()
@@ -158,7 +162,7 @@ class Pick_Place:
         # using the measure tape tool from meshlab.
         # The box is the bounding box of the coke cylinder.
         # The values are taken from the cylinder base diameter and height.
-        self._scene.add_box(name, p, (0.07, 0.07, 0.07)) # 0.077, 0.077, 0.070
+        self._scene.add_box(name, p, (0.055, 0.055, 0.055)) # 0.077, 0.077, 0.070
 
         return p.pose
 
