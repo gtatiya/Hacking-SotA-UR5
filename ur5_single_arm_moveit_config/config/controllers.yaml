@@ -16,3 +16,15 @@ controller_list:
     default: true
     joints:
       - gripper_finger1_joint
+      - gripper_finger2_joint
+
+
+  # - name: "gripper"
+  #   type: GripperCommand
+  #   action_ns: gripper_action
+  #   default: true
+  #   parallel: true
+  #   joints:
+  #     - gripper_finger1_joint
+  #     - gripper_finger2_joint
+     

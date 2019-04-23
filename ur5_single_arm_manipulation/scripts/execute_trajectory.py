@@ -44,16 +44,57 @@ arm_group.set_joint_value_target([-0.21957805043352518, -1.097296859939564, 1.89
 arm_group.go(wait=True)
 print("Point 2")
 
+pose = arm_group.get_current_pose().pose
+print("Got pose 1")
+print(pose)
+
 # Close
 grp_group.set_joint_value_target([0.8039005131791948, -0.8039005131791948, 0.8039005131791948, 0.8039005131791948, -0.8039005131791948, 0.8039005131791948])
 grp_group.go(wait=True)
 print("Point 3")
 
 pose = arm_group.get_current_pose().pose
-print("Got pose")
-pose.position.x += 0.1
-pose.position.y += 0.1
-pose.position.z += 0.1
+print("Got pose 2")
+print(pose)
+# pose.position.x += 0.1
+# pose.position.y += 0.1
+# pose.position.z += 0.1
+########################
+# pose.position.x -= 0.5
+# pose.position.y += 0.1
+# pose.position.z += 0.8
+# pose.position.x += 0.3
+# pose.position.y += 0.3
+# pose.position.z += 0.3
+
+print("Got pose 4")
+print(pose)
+
+# pose.position.x = -0.355057120323
+# pose.position.y = -0.192236363888
+# pose.position.z = 0.532070159912
+
+pose.position.x = -0.7
+pose.position.y = 0.2
+pose.position.z = 1.5
+
+"""
+  x: -0.32523688674
+  y: 0.154882699251
+	z: 0.560538291931
+
+	Up location:
+  x: -0.726045787334
+  y: 0.206279024482
+ z: 1.50351989269
+  x: -0.729166285085
+  y: 0.191447970874
+  z: 1.508802245
+
+Try diff planner
+Try IKFast: http://openrave.org/docs/0.8.2/openravepy/ikfast/
+
+"""
 arm_group.set_pose_target(pose)
 arm_group.go(wait=True)
 print("Point 4")
@@ -63,6 +104,10 @@ grp_group.set_joint_value_target([9.800441184282249e-05, -9.800441184282249e-05,
 grp_group.go(wait=True)
 print("Point 5")
 
-arm_group.set_named_target('up')
-arm_group.go(wait=True)
-print("Point 6")
+pose = arm_group.get_current_pose().pose
+print("Got pose 5")
+print(pose)
+
+# arm_group.set_named_target('up')
+# arm_group.go(wait=True)
+# print("Point 6")

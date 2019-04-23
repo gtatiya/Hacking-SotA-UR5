@@ -1,0 +1,36 @@
+<robot name="simple_box">
+  <link name="my_box">
+
+    <!-- rosrun gazebo_ros spawn_model -file /home/gyan/Documents/ROS_code/ria_ws/src/ROS_Manipulation_in_5_Days/fetch_ros/fetch_description/robots/table.urdf -urdf -x 1 -model my_object -->
+    
+    <inertial>
+      <origin xyz="0 0 0.0145"/>
+      <mass value="0.1" />
+      <inertia  ixx="0.0001" ixy="0.0"  ixz="0.0"  iyy="0.0001"  iyz="0.0"  izz="0.0001" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.86 0.86 0.02"/>
+      </geometry>
+    </visual> 
+
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.86 0.86 0.02"/>
+      </geometry>
+    </collision> 
+
+  </link>
+
+  <gazebo reference="my_box">
+    <material>Gazebo/Wood</material>
+  </gazebo> 
+
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+
+</robot>
