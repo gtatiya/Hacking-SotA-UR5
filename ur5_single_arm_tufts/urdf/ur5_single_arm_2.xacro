@@ -34,4 +34,7 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </xacro:robotiq_85_gripper>
 
+  <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/gzplugin_grasp_fix.urdf.xacro"/>
+  <xacro:gzplugin_grasp_fix/>
+
 </robot>
