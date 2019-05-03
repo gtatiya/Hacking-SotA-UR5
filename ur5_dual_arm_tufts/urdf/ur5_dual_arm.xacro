@@ -11,6 +11,21 @@
   <!-- robotiq 85 -->
   <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
 
+  <!-- kinect, ir, rgb sensor-->
+<!--   <xacro:include filename="$(find ur5_dual_arm_tufts)/urdf/sensors/kinect2/common.xacro" />
+  <xacro:include filename="$(find ur5_dual_arm_tufts)/urdf/sensors/kinect2/kinect2.urdf.xacro" />
+
+  <xacro:kinect2_v0 name="camera" parent="world" >
+    <origin xyz="0.6 0.3 1.45" rpy="0.0 ${pi/2} ${-pi/2}" />
+  </xacro:kinect2_v0> -->
+
+  <!-- kinect -->
+  <xacro:include filename="$(find ur5_dual_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
+
+  <xacro:kinect name="camera" parent="world" >
+    <origin xyz="0.45 0.3 1.45" rpy="0.0 ${pi/2} ${-pi/2}" />
+  </xacro:kinect>
+
   <!-- arm 1 -->
   <xacro:ur5_robot prefix="right_" joint_limited="true"
     shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
@@ -45,14 +60,13 @@
     <collision>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.stl"/>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/objects/UR5Frame.STL"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://ur5_dual_arm_tufts/meshes/UR5Frame.STL"/>
-        <!-- <mesh filename="/home/andrecleaver/catkin_ws/src/Hacking-SotA-UR5/ur5_dual_arm_tufts/meshes/UR5Frame.dae"/> -->
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/objects/UR5Frame.STL"/>
       </geometry>
     </visual>
   </link>
