@@ -19,7 +19,7 @@
      respawn="false" output="screen"
      args="-urdf -param robot_description 
      -model robot 
-     -z 0.1 
+     -z 0.0 
      -J left_shoulder_pan_joint -2.11
      -J left_shoulder_lift_joint -0.87  
      -J left_elbow_joint 1.32  
@@ -42,9 +42,8 @@
   <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn ur5_arm_right ur5_arm_left right_gripper left_gripper" respawn="false" output="screen"/>
 
 
-
   <node pkg="timed_roslaunch" type="timed_roslaunch.sh"
-  args="2 ur5_dual_arm_moveit_config ur5_moveit_planning_execution.launch debug:=false sim:=true"
+  args="3 ur5_dual_arm_moveit_config ur5_moveit_planning_execution.launch debug:=false sim:=true"
   name="timed_roslaunch" output="screen" />
 
 <!--   <include file="$(find ur5_dual_arm_moveit_config)/launch/ur5_moveit_planning_execution.launch">
