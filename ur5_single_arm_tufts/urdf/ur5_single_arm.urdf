@@ -708,120 +708,22 @@
             <offset>0.0</offset>
         </plugin>
     </gazebo>
-    <gazebo reference="table_base">
-        <material>Gazebo/FlatBlack</material>
-    </gazebo>
-    <gazebo reference="table_top">
-        <material>Gazebo/White</material>
-    </gazebo>
-    <link name="table_base">
-        
-<inertial>
-            <origin rpy="0 0 0" xyz="0.018511509179121 0.23251932391586 1.175991980646075" />
-            <mass value="12.6503207764878" />
-            <inertia ixx="1.69157982834144" ixy="-1.62908934773947E-14" ixz="-9.74479440236252E-15" iyy="3.23322704330012" iyz="-1.84123364573924E-14" izz="2.59218197995528" />
-        </inertial>
+    <!-- kinect -->
+    <!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
 
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://ur5_single_arm_tufts/meshes/objects/table_base.STL" />
-            </geometry>
-            <material name="">
-                <color rgba="0.192156862745098 0.203921568627451 0.203921568627451 1" />
-            </material>
-        </visual>
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://ur5_single_arm_tufts/meshes/objects/table_base.STL" />
-            </geometry>
-        </collision>
-    </link>
-    <link name="table_top">
-        
-<inertial>
-            <origin rpy="0 0 0" xyz="2.18575157973078E-16 0.0165 -1.11022302462516E-16" />
-            <mass value="27.72" />
-            <inertia ixx="1.48091559" ixy="-4.70197740328915E-35" ixz="1.33744867033177E-16" iyy="4.025175" iyz="0" izz="2.54929059" />
-        </inertial>
+  <xacro:kinect name="camera" parent="world" >
+    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect> -->
+    <!-- kinect, ir, rgb sensor-->
+    <!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect2/common.xacro" />
+  <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect2/kinect2.urdf.xacro" />
 
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://ur5_single_arm_tufts/meshes/objects/table_top.STL" />
-            </geometry>
-            <material name="">
-                <color rgba="1 1 1 1" />
-            </material>
-        </visual>
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0.0375 -0.3975" />
-            <geometry>
-                <box size="1.05 0.015 0.005" />
-            </geometry>
-            <material name="">
-                <color rgba="0.8 0.8 1 1" />
-            </material>
-        </visual>
-        <visual>
-            <origin rpy="0 0 0" xyz="0.5225 0.0375 0" />
-            <geometry>
-                <box size="0.005 0.015 0.8" />
-            </geometry>
-            <material name="">
-                <color rgba="0.8 0.8 1 1" />
-            </material>
-        </visual>
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0.0375 -0.3975" />
-            <geometry>
-                <box size="1.05 0.015 0.005" />
-            </geometry>
-        </collision>
-        <collision>
-            <origin rpy="0 0 0" xyz="0.5225 0.0375 0" />
-            <geometry>
-                <box size="0.005 0.015 0.8" />
-            </geometry>
-        </collision>
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://ur5_single_arm_tufts/meshes/objects/table_top.STL" />
-            </geometry>
-        </collision>
-    </link>
-    <joint name="j1" type="fixed">
-        <origin rpy="1.5707963267949 0 0" xyz="0.0185115091791201 -0.175991980646074 0.397575968372377" />
-        <parent link="table_base" />
-        <child link="table_top" />
-        <axis xyz="0 0 0" />
-    </joint>
-    <!-- Add some handy co-ordinate frames -->
-    <link name="tabletop_ontop" />
-    <joint name="table_tabletop_totop" type="fixed">
-        <origin rpy="-1.57079632679 0 0" xyz="0.0 0.033 0" />
-        <parent link="table_top" />
-        <child link="tabletop_ontop" />
-        <axis xyz="0 0 0" />
-    </joint>
-    <link name="tabletop_corner" />
-    <joint name="set_tabletop_relto_corner" type="fixed">
-        <origin rpy="0 0 -0.76" xyz="0.42 0.3 0" />
-        <!-- exact 45 degrees of -0.785398163397458 does not match the real table -->
-        <parent link="tabletop_ontop" />
-        <child link="tabletop_corner" />
-    </joint>
+  <xacro:kinect2_v0 name="camera" parent="world" >
+    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect2_v0> -->
     <link name="world" />
-    <!-- 
-  <link name="table"> 
-    <visual>
-      <geometry>
-        <box size="1 1 0.05"/>
-      </geometry>
-    </visual>
-     
+    <!--   <link name="table">
+    
 <inertial>
       <origin xyz="0.23 0 0.755" rpy="0 0 0" />
       <mass value="1"/>
@@ -831,16 +733,30 @@
         izz="0.33"/>
     </inertial>
 
+    <visual>
+      <geometry>
+        <box size="1 1 0.05"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
     <collision>
       <geometry>
         <box size="1 1 0.05"/>
       </geometry>
     </collision>
-  </link> -->
+  </link>
+
+  <joint name="world_to_table" type="fixed">
+      <parent link="world"/>
+      <child link="table"/>
+      <origin xyz="0.85 0 0.70" rpy="0 0 0"/>
+  </joint> -->
     <link name="robot_pilar">
         <visual>
             <geometry>
-                <cylinder length="0.9" radius="0.1" />
+                <cylinder length="0.9" radius="0.07" />
             </geometry>
             <material name="blue">
                 <color rgba="0 0 .8 1" />
@@ -848,7 +764,7 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder length="0.9" radius="0.1" />
+                <cylinder length="0.9" radius="0.07" />
             </geometry>
         </collision>
         
@@ -868,14 +784,5 @@
         <child link="base_link" />
         <origin rpy="0 0 0" xyz="0 0 0.45" />
     </joint>
-    <!--   <joint name="world_to_table" type="fixed">
-      <parent link="world"/>
-      <child link="table"/>
-      <origin xyz="0.8 0 0.8" rpy="0 0 0"/>
-  </joint> -->
-    <joint name="table_to_world" type="fixed">
-        <origin rpy="0 0 -1.555" xyz="0.9 0.08 0.3" />
-        <parent link="world" />
-        <child link="table_base" />
-    </joint>
 </robot>
+

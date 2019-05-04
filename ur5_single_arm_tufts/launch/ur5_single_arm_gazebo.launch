@@ -26,8 +26,8 @@
   <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller gripper" respawn="false" output="screen"/>
 
   <!-- Effort Controllers -->
-  <rosparam file="$(find ur5_single_arm_tufts)/controller/effort_controller.yaml" command="load"/>
-  <node name="effort_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_effort_controller gripper_effort_controller" respawn="false" output="screen"/>
+<!--   <rosparam file="$(find ur5_single_arm_tufts)/controller/effort_controller.yaml" command="load"/>
+  <node name="effort_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_effort_controller gripper_effort_controller" respawn="false" output="screen"/> -->
 
   <include file="$(find ur5_single_arm_moveit_config)/launch/ur5_moveit_planning_execution.launch">
     <arg name="debug" default="$(arg debug)" />

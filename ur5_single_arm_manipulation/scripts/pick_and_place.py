@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import rospy
+import rospkg
 
 from moveit_commander import RobotCommander, PlanningSceneInterface
 from moveit_commander import roscpp_initialize, roscpp_shutdown
@@ -19,6 +20,19 @@ from tf.transformations import quaternion_from_euler
 import sys
 import copy
 import numpy
+import os
+
+from gazebo_msgs.srv import (
+    SpawnModel,
+    DeleteModel,
+)
+
+from geometry_msgs.msg import (
+    PoseStamped,
+    Pose,
+    Point,
+    Quaternion,
+)
 
 
 # Create dict with human readable MoveIt! error codes:
@@ -58,7 +72,7 @@ class Pick_Place:
         self._scene.remove_world_object(self._grasp_object_name)
 
         # Add table and Coke can objects to the planning scene:
-        #self._pose_table    = self._add_table(self._table_object_name)
+        self._pose_table    = self._add_table(self._table_object_name)
         self._pose_coke_can = self._add_grasp_block_(self._grasp_object_name)
 
         rospy.sleep(1.0)
@@ -132,16 +146,16 @@ class Pick_Place:
         p.header.frame_id = self._robot.get_planning_frame()
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = 0.8
+        p.pose.position.x = 0.85
         p.pose.position.y = 0.0
-        p.pose.position.z = 0.4
+        p.pose.position.z = 0.70
 
         q = quaternion_from_euler(0.0, 0.0, numpy.deg2rad(90.0))
         p.pose.orientation = Quaternion(*q)
 
         # Table size from ~/.gazebo/models/table/model.sdf, using the values
         # for the surface link.
-        self._scene.add_box(name, p, (0.86, 0.86, 0.02))
+        self._scene.add_box(name, p, (1, 1, 0.05))
 
         return p.pose
 
@@ -153,9 +167,9 @@ class Pick_Place:
         p.header.frame_id = self._robot.get_planning_frame()
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = 0.4
-        p.pose.position.y = 0
-        p.pose.position.z = 0.75
+        p.pose.position.x = 0.5
+        p.pose.position.y = 0.0
+        p.pose.position.z = 0.74
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
         p.pose.orientation = Quaternion(*q)
@@ -164,7 +178,7 @@ class Pick_Place:
         # using the measure tape tool from meshlab.
         # The box is the bounding box of the coke cylinder.
         # The values are taken from the cylinder base diameter and height.
-        self._scene.add_box(name, p, (0.045, 0.045, 0.045)) # 0.077, 0.077, 0.070
+        self._scene.add_box(name, p, (0.045, 0.045, 0.045))
 
         return p.pose
 
@@ -408,9 +422,54 @@ def main():
 
     rospy.spin()
 
+def spawn_gazebo_model(model_path, model_name, model_pose, reference_frame="world"):
+  """
+  Spawn model in gazebo
+  """
+  model_xml = ''
+  with open(model_path, "r") as model_file:
+    model_xml = model_file.read().replace('\n', '')
+  rospy.wait_for_service('/gazebo/spawn_urdf_model')
+  try:
+    spawn_urdf = rospy.ServiceProxy('/gazebo/spawn_urdf_model', SpawnModel)
+    resp_urdf = spawn_urdf(model_name, model_xml, "/", model_pose, reference_frame)
+  except rospy.ServiceException, e:
+    rospy.logerr("Spawn URDF service call failed: {0}".format(e))
+
+def delete_gazebo_model(models):
+  """
+  Delete model in gazebo
+  """
+  try:
+    delete_model = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
+    for a_model in models:
+      resp_delete = delete_model(a_model)
+  except rospy.ServiceException, e:
+    rospy.loginfo("Delete Model service call failed: {0}".format(e))
+
 if __name__ == '__main__':
     roscpp_initialize(sys.argv)
     rospy.init_node('pick_and_place')
+
+    rospack = rospkg.RosPack()
+    pack_path = rospack.get_path('ur5_single_arm_tufts')
+
+    """
+    rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_tufts)/urdf/objects/table.urdf -urdf -x 0.85 -y 0.0 -z 0.73 -model my_object
+    rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_tufts)/urdf/objects/block.urdf -urdf -x 0.5 -y -0.0 -z 0.77 -model block
+    """
+
+    table_path = pack_path+os.sep+'urdf'+os.sep+'objects'+os.sep+'table.urdf'
+    table_name = 'table'
+    table_pose = Pose(position=Point(x=0.85, y=0.0, z=0.70+0.03)) # increase z by 0.03 to make gripper reach block
+
+    block_path = pack_path+os.sep+'urdf'+os.sep+'objects'+os.sep+'block.urdf'
+    block_name = 'block'
+    block_pose = Pose(position=Point(x=0.5, y=0.0, z=0.74+0.03))
+
+    delete_gazebo_model([table_name, block_name])
+    spawn_gazebo_model(table_path, table_name, table_pose)
+    spawn_gazebo_model(block_path, block_name, block_pose)
 
     main()
 

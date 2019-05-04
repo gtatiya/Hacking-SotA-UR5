@@ -19,6 +19,13 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </xacro:robotiq_85_gripper>
 
+    <!-- kinect -->
+<!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
+
+  <xacro:kinect name="camera" parent="world" >
+    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect> -->
+
   <!-- kinect, ir, rgb sensor-->
 <!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect2/common.xacro" />
   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect2/kinect2.urdf.xacro" />
@@ -27,21 +34,14 @@
     <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
   </xacro:kinect2_v0> -->
 
-  <!-- kinect -->
-  <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
-
-  <xacro:kinect name="camera" parent="world" >
-    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
-  </xacro:kinect>
-
   <!-- Pilar property -->
   <xacro:property name="pilar_height" value="0.9"/>
   <xacro:property name="pilar_radius" value="0.07"/>
 
-  <link name="world"/>
-  
 
-  <link name="table">
+  <link name="world"/> 
+
+<!--   <link name="table">
     <inertial>
       <origin xyz="0.23 0 0.755" rpy="0 0 0" />
       <mass value="1"/>
@@ -68,9 +68,8 @@
   <joint name="world_to_table" type="fixed">
       <parent link="world"/>
       <child link="table"/>
-      <!-- <origin xyz="0.85 0 0.7" rpy="0 0 0"/> -->
-      <origin xyz="0.85 0 0.72" rpy="0 0 0"/>
-  </joint>
+      <origin xyz="0.85 0 0.70" rpy="0 0 0"/>
+  </joint> -->
     
   <link name="robot_pilar">
     <visual>
@@ -106,5 +105,8 @@
     <child link="base_link"/>
     <origin xyz="0 0 ${pilar_height/2}" rpy="0 0 0"/>
   </joint>
+
+  <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/gzplugin_grasp_fix.urdf.xacro"/>
+  <xacro:gzplugin_grasp_fix/>
 
 </robot>

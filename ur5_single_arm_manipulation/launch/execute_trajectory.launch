@@ -37,7 +37,7 @@
 
   <!-- spawn a block -->
   <!-- rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_tufts)/urdf/objects/model.urdf -urdf -x 0.5 -y -0 -z 0.75 -model block -->
-  <node name="spawn_block" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find ur5_single_arm_tufts)/urdf/objects/model.urdf -model block_model -x 0.4 -y 0 -z 0.9" respawn="false" output="screen" />
+  <!-- <node name="spawn_block" pkg="gazebo_ros" type="spawn_model" args="-urdf -file $(find ur5_single_arm_tufts)/urdf/objects/model.urdf -model block_model -x 0.4 -y 0 -z 0.9" respawn="false" output="screen" /> -->
 
   <node pkg="ur5_single_arm_manipulation" name="execute_trajectory" type="execute_trajectory.py" output="screen"/>
 
