@@ -34,6 +34,11 @@ rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_tufts)/urdf/ur
 ### Pick and Place:
 `rosrun ur5_single_arm_manipulation pick_and_place.py`
 
+## Obstacle Avoidance
+`roslaunch ur5_single_arm_manipulation planners.launch`
+`rosrun ur5_single_arm_manipulation planners.py`
+
+
 
 ## UR5 Single Arm
 
