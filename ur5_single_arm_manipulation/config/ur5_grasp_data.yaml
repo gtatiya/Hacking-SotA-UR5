@@ -9,7 +9,7 @@ gripper:
   #Posture of grippers before grasping
   pregrasp_posture: [0.0] #open
   pregrasp_time_from_start: 4.0
-  grasp_posture: [0.451] #close .45<0.451<.452, max value is 0.8040
+  grasp_posture: [0.407] #close .45<0.451<.452, max value is 0.8040
   grasp_time_from_start: 4.0
   postplace_time_from_start: 4.0
 

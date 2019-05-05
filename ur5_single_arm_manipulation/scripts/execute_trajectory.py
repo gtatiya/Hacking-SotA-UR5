@@ -97,7 +97,7 @@ spawn_gazebo_model(block_path, block_name, block_pose)
 
 """
 The Lenght of gripper is ~0.15
-Min. reachable z value on the table is 0.89 from downOrientation
+Min. reachable z value on the table is 0.9 from downOrientation
 Min. reachable x on table: 0.37
 
 Max. reachable y on table: 0.46
@@ -142,7 +142,7 @@ pose = arm_group.get_current_pose().pose
 # Block point
 pose.position.x = 0.4
 pose.position.y = 0.0
-pose.position.z = 0.89
+pose.position.z = 0.90
 
 downOrientation = tf.transformations.quaternion_from_euler(0, 3.1415/2, 0)
 print("downOrientation: ", downOrientation)

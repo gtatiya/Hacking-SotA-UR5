@@ -20,11 +20,11 @@
   </xacro:robotiq_85_gripper>
 
     <!-- kinect -->
-<!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
+  <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect/kinect.urdf.xacro" />
 
   <xacro:kinect name="camera" parent="world" >
-    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
-  </xacro:kinect> -->
+    <origin xyz="0.6 0.0 1.8" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect>
 
   <!-- kinect, ir, rgb sensor-->
 <!--   <xacro:include filename="$(find ur5_single_arm_tufts)/urdf/sensors/kinect2/common.xacro" />
