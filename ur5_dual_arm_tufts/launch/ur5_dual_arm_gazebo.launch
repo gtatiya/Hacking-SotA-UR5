@@ -43,7 +43,7 @@
 
 
   <node pkg="timed_roslaunch" type="timed_roslaunch.sh"
-  args="3 ur5_dual_arm_moveit_config ur5_moveit_planning_execution.launch debug:=false sim:=true"
+  args="2 ur5_dual_arm_moveit_config ur5_moveit_planning_execution.launch debug:=false sim:=true"
   name="timed_roslaunch" output="screen" />
 
 <!--   <include file="$(find ur5_dual_arm_moveit_config)/launch/ur5_moveit_planning_execution.launch">
@@ -52,13 +52,13 @@
   </include> -->
 
   <node pkg="timed_roslaunch" type="timed_roslaunch.sh"
-  args="1 ur5_dual_arm_moveit_config moveit_rviz.launch debug:=false config:=true"
+  args="5 ur5_dual_arm_moveit_config moveit_rviz.launch debug:=false config:=true"
   name="timed_roslaunch2" output="screen" />
 
-
-<!--   <include file="$(find ur5_dual_arm_moveit_config)/launch/moveit_rviz.launch">
+<!-- 
+  <include file="$(find ur5_dual_arm_moveit_config)/launch/moveit_rviz.launch">
     <arg name="debug" default="$(arg debug)" />
     <arg name="config" default="true" />
-  </include> -->
-
+  </include>
+ -->
 </launch>
