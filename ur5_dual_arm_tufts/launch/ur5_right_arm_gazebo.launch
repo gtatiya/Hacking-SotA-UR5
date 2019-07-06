@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="sim" default="true" />
+  <arg name="debug" default="false"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(find ur5_dual_arm_tufts)/worlds/ur5_dual_arm_env.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ur5_dual_arm_tufts)/urdf/ur5_right_arm.xacro'"/>
+
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" 
+     respawn="false" output="screen"
+     args="-urdf -param robot_description 
+     -model robot 
+     -z 0.0 
+     -J left_shoulder_pan_joint -2.11
+     -J left_shoulder_lift_joint -0.87  
+     -J left_elbow_joint 1.32  
+     -J left_wrist_1_joint -0.23  
+     -J left_wrist_2_joint 0.0 
+     -J left_wrist_3_joint -1.29
+     -J right_shoulder_pan_joint 2.01
+     -J right_shoulder_lift_joint -2.11  
+     -J right_elbow_joint -1.17  
+     -J right_wrist_1_joint -2.48  
+     -J right_wrist_2_joint -0.11 
+     -J right_wrist_3_joint -1.84 
+     -unpause" /> 
+
+<!--   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/> -->
+
+  <include file="$(find ur_gazebo)/launch/controller_utils.launch"/>
+  <rosparam file="$(find ur5_dual_arm_tufts)/controller/arm_controller.yaml" command="load"/>
+
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn ur5_arm_right ur5_arm_left right_gripper left_gripper" respawn="false" output="screen"/>
+
+
+  <node pkg="timed_roslaunch" type="timed_roslaunch.sh"
+  args="2 ur5_dual_arm_moveit_config ur5_moveit_planning_execution.launch debug:=false sim:=true"
+  name="timed_roslaunch" output="screen" />
+
+<!--   <include file="$(find ur5_dual_arm_moveit_config)/launch/ur5_moveit_planning_execution.launch">
+    <arg name="debug" default="$(arg debug)" />
+    <arg name="sim" default="$(arg sim)" />
+  </include> -->
+
+  <node pkg="timed_roslaunch" type="timed_roslaunch.sh"
+  args="5 ur5_dual_arm_moveit_config moveit_rviz.launch debug:=false config:=true"
+  name="timed_roslaunch2" output="screen" />
+
+<!-- 
+  <include file="$(find ur5_dual_arm_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="debug" default="$(arg debug)" />
+    <arg name="config" default="true" />
+  </include>
+ -->
+</launch>

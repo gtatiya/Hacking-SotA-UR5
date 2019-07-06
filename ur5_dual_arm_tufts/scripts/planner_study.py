@@ -28,7 +28,7 @@ scene = moveit_commander.PlanningSceneInterface()
 
 planner_time_array = []
 
-planners = [    
+planners = [ 
     "RRTConnect"
     ,"RRT"
     ,"SBL"
@@ -74,7 +74,7 @@ pose.orientation.w = downOrientation[3]
 
 pose_A = pose
 
-arm_group.set_pose_target(pose)
+arm_group.set_pose_target(pose_A)
 time.sleep(2)
 arm_group.go(wait=True)
 print("Start point")
@@ -98,7 +98,7 @@ raw_input("Press Enter to continue...")
 for i in range(len(planners)):
   arm_group.set_planner_id(planners[i])
   print("Current planner:", planners[i])
-  arm_group.set_pose_target(pose)
+  arm_group.set_pose_target(pose_B)
 
   try:
     plan = arm_group.plan()

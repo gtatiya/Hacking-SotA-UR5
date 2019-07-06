@@ -14,7 +14,6 @@ rosrun gazebo_ros spawn_model -file $(rospack find ur5_single_arm_tufts)/urdf/ur
 ### Gazebo + MoveIt Rviz:
 `roslaunch ur5_single_arm_tufts ur5_single_arm_gazebo.launch`
 
-
 ### Launch Gazebo and execute trajectories:
 `roslaunch ur5_single_arm_manipulation execute_trajectory.launch`
 
@@ -40,26 +39,15 @@ roslaunch ur5_single_arm_manipulation planners.launch
 rosrun ur5_single_arm_manipulation planners.py
 ```
 
+## UR5 Dual Arm + RobotiQ 85 gripper
 
-## UR5 Single Arm
+roslaunch ur5_dual_arm_tufts ur5_dual_arm_gazebo.launch
 
-### Gazebo + MoveIt Rviz:
-`roslaunch ur5_single_arm_tufts ur5_single_arm_gazebo_arm.launch`
+### UR5 Right Arm + RobotiQ 85 gripper
 
-### Launch Gazebo and execute trajectories:
-`roslaunch ur5_single_arm_ur5_manipulation execute_trajectory.launch`
+roslaunch ur5_dual_arm_tufts ur5_right_arm_gazebo.launch
 
-### Execute trajectories (open Gazebo first):
-`rosrun ur5_single_arm_ur5_manipulation execute_trajectory.py`
+### UR5 Left Arm + RobotiQ 85 gripper
 
-## RobotiQ 85 gripper
-
-### Gazebo + MoveIt Rviz:
-`roslaunch ur5_single_arm_tufts ur5_single_arm_gazebo_gripper.launch`
-
-### Launch Gazebo and execute trajectories:
-`roslaunch ur5_single_arm_gripper_manipulation execute_trajectory.launch`
-
-### Execute trajectories (open Gazebo first):
-`rosrun ur5_single_arm_gripper_manipulation execute_trajectory.py`
+roslaunch ur5_dual_arm_tufts ur5_left_arm_gazebo.launch
 

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
+  <!-- robotiq 85 -->
+  <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  <!-- arm 1 -->
+  <xacro:ur5_robot prefix="right_" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+  />
+
+  <link name="world"/>
+
+  <link name="ur5_frame">
+    <inertial>
+      <origin rpy  ="0.0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="27.21"/>
+      <inertia
+        ixx="5.01" ixy="0.0" ixz="0.0"
+        iyy="5.07" iyz="0.0"
+        izz="3.20"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/objects/UR5Frame.STL"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ur5_dual_arm_tufts/meshes/objects/UR5Frame.STL"/>
+      </geometry>
+    </visual>
+  </link>
+
+ <joint name="ur5_frame_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="ur5_frame"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+<!-- right arm -->
+  <joint name="world_joint_2" type="fixed">
+    <parent link="ur5_frame" />
+    <child link = "right_base_link" />
+    <origin xyz="0.265 0.635 1.275" rpy="${0*pi/180} ${225*pi/180}  ${0*pi/180}" />
+  </joint>
+
+  <!-- robotiq 85 2 (right) -->
+  <xacro:robotiq_85_gripper prefix="right_" parent="right_ee_link" >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_85_gripper>
+
+</robot>
