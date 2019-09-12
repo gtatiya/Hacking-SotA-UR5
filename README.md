@@ -1,5 +1,13 @@
 # Hacking-SotA-UR5
 
+This package launches gazebo world, UR5 arm, table and block on the table. The UR5 arm performs Pick and Place behaviors on the block using `MoveIt!` and `moveit_simple_grasps`.
+
+## Requirements
+
+1. Ubuntu 16.04
+2. ROS Kinetic
+3. Gazebo 7.x
+
 ## UR5 Single Arm + RobotiQ 85 gripper
 
 ### Rviz:
