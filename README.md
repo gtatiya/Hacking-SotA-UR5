@@ -52,6 +52,8 @@ rosrun ur5_single_arm_manipulation planners.py
 
 ## UR5 Dual Arm + RobotiQ 85 gripper
 
+<img src="pics/dual_arm_urdf_setup_robotiq_85.png" align="middle">
+
 roslaunch ur5_dual_arm_tufts ur5_dual_arm_gazebo.launch
 
 ### UR5 Right Arm + RobotiQ 85 gripper
